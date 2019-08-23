@@ -1,0 +1,36 @@
+<%= simple_form_for ([@article, @article.comments.build])  do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <div class="panel panel-danger">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-ban-circle"> </span>
+          <%= pluralize(@article.errors.count, "error") %> </strong>
+          <%# pluralize is a rails helper that takes a number and a string as its arguments.
+                If the number is greater than one, the string will be automatically pluralized. %>
+          prohibited
+          this Comment from being saved:
+        </div>
+        <div class="panel-body">
+          <ul>
+            <% @article.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<%# if there is any error that not allow us to save the data upper code will show the error %>
+
+  <div class="form-group">
+    <%# <%= f.text_area :body, :rows => 10, style: 'width:100%;' %>
+    <%= f.text_area :body ,placeholder:'Write something',  style:'padding: 12px 20px;width: 300px;margin-right:40px;box-sizing: border-box;
+      border: 2px solid #ccc; border-radius: 4px;  background-color: #f8f8f8;  ' %>
+  </div>
+  <br>
+
+  <%= f.button :submit, class: 'btn btn-success' %>
+  <br><br>
+  </div>
+<%end %>
+
+<!--</div>-->
